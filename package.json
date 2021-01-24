@@ -1,0 +1,22 @@
+{
+  "name": "lab01_101239316",
+  "version": "1.0.0",
+  "description": "Full stack II Lab 01",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgeniya-zhukova/Lab01_101239316.git"
+  },
+  "author": "Evgeniya Zhukova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evgeniya-zhukova/Lab01_101239316/issues"
+  },
+  "homepage": "https://github.com/evgeniya-zhukova/Lab01_101239316#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  }
+}
