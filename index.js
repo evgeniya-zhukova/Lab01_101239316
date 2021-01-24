@@ -1,4 +1,5 @@
 const fs = require('fs')
+const csv = require('csv-parser')
 
 if (fs.existsSync("canada.txt")) {
     fs.unlinkSync("canada.txt")
@@ -8,9 +9,28 @@ if (fs.existsSync("usa.txt")) {
     fs.unlinkSync("usa.txt")
 }
 
-var data = fs.readFileSync('input_countries.csv', 'utf8')
+var canada
+var usa
 
-fs.writeFile("canada.txt", `${data}`, (err) => {
+var data = fs.createReadStream('input_countries.csv')
+  .pipe(csv())
+  .on('data', (row) => {
+    if (row.country == 'Canada')
+    {
+        console.log(row)
+        canada += row
+    }
+    if (row.country == 'United States')
+    {
+        console.log(row)
+        usa += row
+    }
+  })
+  .on('end', () => {
+    console.log('CSV file successfully processed');
+  });
+
+fs.writeFile("canada.txt", `${canada}`, (err) => {
     if(err)
     {
         console.log(`Error : ${err}`)
@@ -19,7 +39,7 @@ fs.writeFile("canada.txt", `${data}`, (err) => {
     }
 })
 
-fs.writeFile("usa.txt", `${data}`, (err) => {
+fs.writeFile("usa.txt", `${usa}`, (err) => {
     if(err)
     {
         console.log(`Error : ${err}`)
